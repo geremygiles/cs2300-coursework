@@ -5,9 +5,15 @@ Date: 09/14/2025
 Description: A program to perform fundamental matrix operations, including addition, subtraction, and scalar multiplication.
 """
 
-#### Functions ####
-from sys import exception
 
+#### Definitions ####
+options = {1: "Addition", 2: "Subtraction", 3: "Scalar Multiplication", 4: "Exit"}
+rows = 0
+columns = 0
+selected_menu_option = -1
+
+
+#### Functions ####
 
 def fill_matrix(matrix_index):
 	# Print a confirmation message and direct to the next matrix
@@ -51,8 +57,50 @@ def fill_matrix(matrix_index):
 
 	return matrix
 
-#### Definitions ####
-options = {1: "Addition", 2: "Subtraction", 3: "Scalar Multiplication", 4: "Exit"}
+def prompt_menu():
+	# List menu options
+	print("1. Addition" + 
+	   "\n2. Subtraction" + 
+	   "\n3. Scalar Multiplication" + 
+	   "\n4. Exit")
+
+	# Validate user input with loop
+	menu_option = -1;
+	while menu_option < 1 or menu_option > 4: # Check for valid input
+		try:
+			menu_option = int(input("Choose an option listed above: ").strip())
+			if menu_option < 1 or menu_option > 4:
+				print("Invalid entry") # Print error message
+		except:
+			print("Invalid entry") # Print error message
+	
+	# Print selected option
+	print("You selected " + options[menu_option] + "\n")
+	
+	global selected_menu_option
+	selected_menu_option = menu_option
+
+	if selected_menu_option == 4:
+		print("Exiting...")
+		exit()
+
+def prompt_rows_columns():
+	global rows
+	global columns
+	rows = 0
+	columns = 0
+
+	while rows == 0 or columns == 0:
+		try:
+			rows_and_columns = input ("Enter the amount of rows and columns in the matrixes, with the following format: “# #”\n").strip()
+			# try to find the index of the space character
+			space_index = rows_and_columns.index(" ")
+			# Splice the string into rows and colums
+			rows = int(rows_and_columns[:space_index])
+			columns = int(rows_and_columns[space_index+1:])
+		except: 
+			# No space found or letters entered, reprompt user
+			print("Input error")
 
 
 #### Main Code ####
@@ -60,47 +108,29 @@ options = {1: "Addition", 2: "Subtraction", 3: "Scalar Multiplication", 4: "Exit
 # Print title
 print("Matrix Calculator")
 
-# List menu options
-print("1. Addition" + 
-	  "\n2. Subtraction" + 
-	  "\n3. Scalar Multiplication" + 
-	  "\n4. Exit")
+# Prompt user for menu option input
+prompt_menu()
 
-# Prompt user input, validate with loop, and store in var
-menu_option = -1;
-while menu_option < 1 or menu_option > 4:
-	try:
-		menu_option = int(input("Choose an option listed above: ").strip())
-		if menu_option < 1 or menu_option > 4:
-			print("Invalid entry")
-	except:
-		# Print error message and reprompt user
-		print("Invalid entry")
-		
-
-# Print selected option
-print("You selected " + options[menu_option] + "\n")
-# Prompt user for rows and columns of two matrixes, and store in var
-rows = 0
-columns = 0
-while rows == 0 or columns == 0:
-	try:
-		rows_and_columns = input ("Enter the amount of rows and columns in the matrixes, with the following format: “# #”\n").strip()
-		# try to find the index of the space character
-		space_index = rows_and_columns.index(" ")
-		# Splice the string into rows and colums
-		rows = int(rows_and_columns[:space_index])
-		columns = int(rows_and_columns[space_index+1:])
-	except: 
-		# No space found or letters entered, reprompt user
-		print("Input error")
-
-
-
-# Attempt to splice the input into separate integer variables, and throw and error and reprompt if needed
+# Prompt user for rows and columns of two matrixes, validate with loop, and store in var
+prompt_rows_columns()
 
 # Call the fill_matrix function twice to get both matrixes
 matrix1 = fill_matrix(1)
 print(matrix1)
 matrix2 = fill_matrix(2)
 print(matrix2)
+
+# Perform the selected operation
+match selected_menu_option:
+	case 1: # Addition
+		final_matrix = []
+
+		row_index = 0 # Iterate through each row
+		while row_index < rows: 
+			column_index = 0 # Iterate through each column
+			matrix1[row_index]
+		
+	case 2: # Subtraction
+		print("TODO: sub")
+	case 3: # Scalar Multiplication
+		print("TODO: scalar")
