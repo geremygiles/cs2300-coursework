@@ -9,14 +9,6 @@ Description: A program that can produce and solve a general solution to a networ
 import numpy as np
 import sympy as sp
 
-#### Definitions ####
-matrix = None
-
-
-
-#### Functions ####
-
-
 ### Main Program ####
 
 # Output the linear equations for the provided network
@@ -38,11 +30,6 @@ matrix = np.array([[1, -1, 0, 0, 0, 0, 100],
                    [0, 0, 0, -1, 1, 0, 150],
                    [0, 0, 0, 0, 1, -1, 80],
                    [1, 0, 0, 0, 0, -1, 100]])
-
-#matrix = np.array([[1, 1, 0, 0, 625],
-#                   [1, 0, 0, 1, 475],
-#                   [0, 1, 1, 0, 1050],
-#                   [0, 0, 1, 1, 900]])
 
 # Convert to sympy Matrix
 sp_matrix = sp.Matrix(matrix)
