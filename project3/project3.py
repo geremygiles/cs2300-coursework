@@ -9,7 +9,8 @@ Description: A program to encrypt and decrypt a user-inputted message using the 
 import numpy as np
 
 #### Definitions ####
-file_path = ""
+global file_path
+global file_contents
 rows = 0
 columns = 0
 selected_menu_option = -1
@@ -25,6 +26,8 @@ def prompt_file_name():
 	print("Please input the name of the text file containing the message. (Omit the \".txt\")")
 
 	# Validate user input with loop
+	global file_path
+	file_path = ""
 	while file_path == "": # Check for valid input
 		try:
 			inputted_file_name = input("File Name: ").strip()
@@ -38,6 +41,19 @@ def prompt_file_name():
 	# Print file path
 	print("Inputted file path: " + file_path)
 
+def read_file():
+	global file_path
+	global file_contents
+
+	file_contents = ""
+	while file_contents == "": # Check for valid input
+		try:
+			with open(file_path, 'r') as file:
+				file_contents = file.read()
+				print("File Content: " + file_contents)
+		except FileNotFoundError:
+			print("File cannnot be found. Please check the file name and try again.\n")
+			prompt_file_name()
 
 #### Main Code ####
 
@@ -45,4 +61,5 @@ def prompt_file_name():
 print("Part 1: Encrypting")
 
 # Prompt for file name
-prompt_file_name() 
+prompt_file_name()
+read_file()
