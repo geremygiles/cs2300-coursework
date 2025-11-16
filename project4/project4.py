@@ -6,7 +6,6 @@ Description: A program to calculate the total output of an economy using the Leo
 """
 
 #### Imports ####
-import math
 import numpy as np
 
 #### Functions ####
