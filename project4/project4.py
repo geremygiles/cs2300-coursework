@@ -95,14 +95,14 @@ matrices = create_matrices(file_contents) # Create matrix from file contents
 # Calculate I - D
 identity_matrix = np.identity(3) # Create identity matrix
 i_minus_d = identity_matrix - matrices[0] # I - D
-print("\n\nI - D Matrix:")
-print(i_minus_d) # Print I - D
+# print("\n\nI - D Matrix:")
+# print(i_minus_d) # Print I - D
 
 # Calculate Inverse of I - D
 inverse_i_d = np.linalg.inv(i_minus_d) # Inverse of I - D
 # inverse_i_d = inverse_i_d.round(2) # Round to 2 decimal places (used to test with example values provided)
-print("\nInverse of I - D Matrix:")
-print(inverse_i_d)
+# print("\nInverse of I - D Matrix:")
+# print(inverse_i_d)
 
 # Calculate X
 x_matrix = inverse_i_d * matrices[1] # X = Inverse(I - D) * E
